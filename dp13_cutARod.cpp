@@ -1,3 +1,4 @@
+//Makes no sense in this problem
 int cutARod(vector<int> &price)
 {
 	int n = price.size();
