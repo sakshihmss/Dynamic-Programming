@@ -2,7 +2,7 @@ int lcs(string X, string Y)
 {
 	int m = X.length();
 	int n = Y.length();
-	int dp[m+1][n+1]; //length of longest common suffixes of X[0....m-1] and Y[0.....n-1] 
+	int dp[m+1][n+1]; //dp[i][j] //length of longest common suffixes of X[0....m-1] and Y[0.....n-1] 
 	int res = 0;
 	for(int i=0;i<=m;i++)
 	{
