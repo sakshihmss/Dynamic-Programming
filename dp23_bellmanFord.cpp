@@ -1,27 +1,24 @@
-int bellmanFord(vector<vector<int>> &graph)
+int bellmanFord(vector<vector<int>> &graph, int V, int E, int src)
 {
-	//check ngative weight cycle
-	int n = graph.size();
-	int dp[n];
-	for(int i=0;i<n;i++)
-	{
-		dp[i] = graph[0][i];
-	}
-	for(int i=1;i<n;i++)
+	//graph[i] represents ith edge from u to v with weight w (u, v, w)
+	//check negative weight cycle
+	int dp[V]; //dp[i] contains distance of every vertex from source
+	for(int i=0;i<V;i++)
 	{
 		dp[i] = INT_MAX;
-		for(int j=0;j<n;j++)
+	}
+	dp[src] = 0;
+	for(int i=0;i<V-1;i++)
+	{
+		for(int j=0;j<E;j++)
 		{
-			dp[i] = min(dp[i], dp[j] + graph[j][i]);
+			dp[graph[j][1]] = min(dp[graph[j][1]], dp[graph[j][0]] + graph[j][2]);
 		}
 	}
-	for(int i=1;i<n;i++)
+	for(int i=0;i<E;i++)
 	{
-		for(int j=0;j<n;j++)
-		{
-			if(dp[i] != INT_MAX && dp[i] + graph[i][j] < dp[j])
-				return 1;
-		}
+		 if(dp[graph[j][0]]!=INT_MAX && dp[graph[j][1]] > dp[graph[j][0]] + graph[j][2])
+		 	return 1;
 	}
 	return 0; //print 0 if there is no weight cycle 
 }
