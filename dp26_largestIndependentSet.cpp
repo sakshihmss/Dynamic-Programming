@@ -10,14 +10,10 @@ struct TreeNode
 int LISS(TreeNode* root)
 {
 	if(!root)
-	{
 		return 0;
-	}
+	
 	if(root->liss)
 		return root->liss;
-
-	if(root->left == NULL && root->right == NULL)
-		return (root->liss = 1);
 
 	int root_included = 1;
 	if(root->left)
